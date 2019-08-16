@@ -4,16 +4,19 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.nio.file.Files;
-import java.util.HashMap;
-import java.util.Hashtable;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * @author songj
  * @date 2019/8/5 9:02
  */
-public class JavaBaseTest extends InterviewApplicationTests {
+public class JavaBaseOneTest extends InterviewApplicationTests {
 
     @Test
     public void test1() {
@@ -418,6 +421,308 @@ public class JavaBaseTest extends InterviewApplicationTests {
          * 30. 哪些集合类是线程安全的？
          *
          * Vector/Hashtable/Stack  JUC:ConcurrentHashMap
+         * 
+         */
+    
+    }
+
+    @Test
+    public void test31(){
+        /**
+         * 31. 迭代器 Iterator 是什么？
+         *
+         * 遍历Collection集合的接口，允许在迭代时移除元素
+         * 
+         */
+    
+    }
+
+    @Test
+    public void test32(){
+        /**
+         * 32. Iterator 怎么使用？有什么特点？
+         *
+         * 使用更加安全，集合遍历时元素新增，会抛出异常 ConcurrentModificationException
+         * 
+         */
+
+        List<String> list = new ArrayList<>();
+        list.add("AA");
+        list.add("Tom");
+        list.add("Jack");
+        list.add("Lucy");
+
+        list.forEach(x-> System.out.println(x));
+        System.out.println("---------------------");
+
+        Iterator<String> iterator = list.listIterator();
+        while (iterator.hasNext()) {
+            String val = iterator.next();
+            System.out.println(val);
+            iterator.remove();
+            list.add("M");
+
+        }
+
+        System.out.println("---------------------");
+        list.forEach(x-> System.out.println(x));
+
+    }
+    
+    @Test
+    public void test33(){
+        /**
+         * 33. Iterator 和 ListIterator 有什么区别？
+         *
+         * Iterator 可以遍历 List和Set，ListIterator 只能遍历 List
+         * Iterator 单向遍历，ListIterator 可以双向遍历
+         * ListIterator 从 Iterator 接口继承
+         * 
+         */
+    
+    }
+
+    @Test
+    public void test34(){
+        /**
+         * 34. 怎么确保一个集合不能被修改？
+         *
+         * 可以使用 Collections. unmodifiableCollection(Collection c) 方法来创建一个只读集合，
+         * 这样改变集合的任何操作都会抛出 Java. lang. UnsupportedOperationException 异常。
+         * 
+         */
+    
+    }
+    
+    @Test
+    public void test35(){
+        /**
+         * 35. 并行和并发有什么区别？
+         *
+         * 并行：多个处理器或多核处理器同时处理多个任务。
+         * 并发：多个任务在同一个CPU 核上，按细分的时间片轮流交替执行，从逻辑上看任务是同时执行
+         * 
+         */
+    
+    }
+    
+    @Test
+    public void test36(){
+        /**
+         * 36. 线程和进程的区别？
+         *
+         * 一个程序运行至少有一个进程（分配系统资源的单位）
+         *
+         * 一个进程可以有多个线程
+         *
+         */
+    
+    }
+    
+    @Test
+    public void test37(){
+        /**
+         * 37. 守护线程是什么？
+         *
+         * 运行在后台的一种特殊进程，如 垃圾回收线程
+         * 它独立于控制终端并且周期性执行某种任务
+         * 
+         */
+    
+    }
+    
+    @Test
+    public void test38(){
+        /**
+         * 38. 创建线程有哪几种方式？
+         *
+         * 继承 Thread 类 重写run方法
+         *
+         * 实现 Runnable 接口
+         *
+         * 实现 Callable 接口，有返回值
+         *
+         * 线程池创建
+         * 
+         */
+    
+    }
+    
+    @Test
+    public void test39(){
+        /**
+         * 39. 说一下 runnable 和 callable 有什么区别？
+         *
+         * 前者没有返回值，后者有返回值
+         *
+         * 
+         */
+    
+    }
+
+    @Test
+    public void test40(){
+        /**
+         * 40. 线程有哪些状态？
+         *
+         * NEW 新建
+         * 就绪
+         * 运行
+         * 阻塞
+         * 死亡
+         *
+         */
+    
+    }
+    
+    @Test
+    public void test41(){
+        /**
+         * 41. sleep() 和 wait() 有什么区别？
+         *
+         * 定义的类不同： Thread.sleep() 、wait() 在Object 类定义
+         *
+         * sleep()不释放锁，wait() 释放锁
+         *
+         * sleep() 到时间自动恢复，wait() 需要 notify、notifyAll 唤醒
+         * 
+         */
+    
+    }
+    
+    @Test
+    public void test42(){
+        /**
+         * 42. notify()和 notifyAll()有什么区别？
+         *
+         * notifyAll 唤醒所有线程，notify 唤醒一个线程
+         * notifyAll 调用后，会将所有线程从等待池移到锁池，然后参与锁的竞争，获取锁后的线程继续执行，
+         * 没有获取的等待释放后再次参与竞争
+         * 
+         */
+    
+    }
+    
+    @Test
+    public void test43(){
+        /**
+         * 43. 线程的 run() 和 start() 有什么区别？
+         *
+         * start() 用于启动线程，run() 线程执行代码
+         * start() 只能调用一次
+         * 
+         */
+    
+    }
+    
+    @Test
+    public void test44(){
+        /**
+         * 44. 创建线程池有哪几种方式？
+         *
+         * ThreadPoolExecutor()
+         * newSingleThreadExecutor()：它的特点在于工作线程数目被限制为 1
+         * newCachedThreadPool()：它是一种用来处理大量短时间工作任务的线程池
+         * newFixedThreadPool(int nThreads)：重用指定数目的线程
+         *
+         * newSingleThreadScheduledExecutor()：创建单线程池，可以进行定时或周期性的任务调度
+         * newScheduledThreadPool(int corePoolSize)：创建指定数目线程，可以进行定时或周期性的任务调度
+         * newWorkStealingPool(int parallelism)
+         *
+         * ThreadPoolExecutor()：是最原始的线程池创建
+         * 
+         */
+        ExecutorService executorService = Executors.newFixedThreadPool(5);
+
+    }
+
+    @Test
+    public void test45(){
+        /**
+         * 45. 线程池都有哪些状态？
+         * RUNNING  接受新的任务，处理等待队列中的任务
+         * SHUTDOWN 不接受新的任务提交，但是会继续处理等待队列中的任务
+         * STOP   中断运行，不接受新的任务提交，不会继续处理等待队列中的任务
+         * TIDYING：所有的任务都销毁了，workCount 为 0，线程池的状态在转换为 TIDYING 状态时，会执行钩子方法 terminated()。
+         * TERMINATED：terminated()方法结束后，线程池的状态就会变成这个
+         * 
+         */
+    
+    }
+    
+    @Test
+    public void test46(){
+        /**
+         * 46. 线程池中 submit() 和 execute() 方法有什么区别？
+         *
+         * execute() 只能执行 Runnable 型任务
+         * submit() 执行Runnable/Callable 型任务
+         * 
+         */
+    
+    }
+
+    @Test
+    public void test47(){
+        /**
+         * 47. 在 Java 程序中怎么保证多线程的运行安全？
+         *
+         * 1.使用安全类 线程安全的类
+         * 2.使用 synchronized 修饰代码块 和 方法
+         * 3.使用 手动锁 Lock
+         *
+         * 
+         */
+        Lock lock = new ReentrantLock();
+        lock.lock();
+        try {
+            System.out.println("获得锁。。。");
+
+        } catch (Exception e) {
+
+        } finally {
+            System.out.println("释放锁。。。");
+            lock.unlock();
+        }
+    }
+    
+    @Test
+    public void test48(){
+        /**
+         * 48. 多线程中 synchronized 锁升级的原理是什么？
+         *
+         * synchronized 锁升级原理：在锁对象的对象头里面有一个 threadid 字段，在第一次访问的时候 threadid 为空，
+         * jvm 让其持有偏向锁，并将 threadid 设置为其线程 id，
+         * 再次进入的时候会先判断 threadid 是否与其线程 id 一致，
+         * 如果一致则可以直接使用此对象，如果不一致，则升级偏向锁为轻量级锁，
+         * 通过自旋循环一定次数来获取锁，执行一定次数之后，如果还没有正常获取到要使用的对象，
+         * 此时就会把锁从轻量级升级为重量级锁，此过程就构成了 synchronized 锁的升级。
+         * 锁的升级的目的：锁升级是为了减低了锁带来的性能消耗。
+         * 在 Java 6 之后优化 synchronized 的实现方式，
+         * 使用了偏向锁升级为轻量级锁再升级到重量级锁的方式，从而减低了锁带来的性能消耗。
+         * 
+         */
+    
+    }
+    
+    @Test
+    public void test49(){
+        /**
+         * 49. 什么是死锁？
+         *
+         * 两个线程持有对方需要的锁资源都在等待对方先释放，发生阻塞从而导致死锁
+         * 
+         */
+    
+    }
+    @Test
+    public void test50(){
+        /**
+         * 50. 怎么防止死锁？
+         * 1.使用并发的JUC安全类
+         * 2.减少同步代码块的使用
+         * 3.尽量使用 tryLock(long timeout, TimeUnit unit),设置超时时间
+         * 4.降低锁的使用粒度，不要多个功能使用通一把锁
          * 
          */
     
