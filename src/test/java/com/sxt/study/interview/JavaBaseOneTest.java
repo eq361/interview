@@ -722,7 +722,7 @@ public class JavaBaseOneTest extends InterviewApplicationTests {
          * 1.使用并发的JUC安全类
          * 2.减少同步代码块的使用
          * 3.尽量使用 tryLock(long timeout, TimeUnit unit),设置超时时间
-         * 4.降低锁的使用粒度，不要多个功能使用通一把锁
+         * 4.降低锁的使用粒度，不要多个功能使用同一把锁
          * 
          */
     
