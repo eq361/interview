@@ -1,14 +1,12 @@
-package com.sxt.study.interview;
+package com.sxt.study.interview.gitchat;
 
+import com.sxt.study.interview.InterviewApplicationTests;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.nio.file.Files;
 import java.util.*;
-import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 

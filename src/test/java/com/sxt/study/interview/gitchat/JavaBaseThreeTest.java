@@ -1,7 +1,7 @@
-package com.sxt.study.interview;
+package com.sxt.study.interview.gitchat;
 
+import com.sxt.study.interview.InterviewApplicationTests;
 import org.junit.Test;
-import org.springframework.beans.factory.annotation.Qualifier;
 
 /**
  * @author songj
