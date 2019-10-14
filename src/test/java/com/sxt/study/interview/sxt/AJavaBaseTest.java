@@ -2,9 +2,13 @@ package com.sxt.study.interview.sxt;
 
 import com.sxt.study.interview.InterviewApplicationTests;
 import com.sxt.study.interview.util.ArrayUtils;
+import com.sxt.study.interview.util.StringUtils;
 import org.junit.Test;
 
+import java.io.UnsupportedEncodingException;
+import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.Calendar;
 
 /**
  * @author songjun
@@ -59,5 +63,61 @@ public class AJavaBaseTest extends InterviewApplicationTests {
         int[] array = {-4, 21, 27, 34, -90};
         ArrayUtils.sortByBubble2(array);
         System.out.println(Arrays.toString(array));
+    }
+
+    @Test
+    public void test6() {
+
+        Double d = 1.0;
+
+        System.out.println(Math.random() / Math.random());
+
+        System.out.println(StringUtils.reverse("abcd"));
+
+    }
+
+    @Test
+    public void test7() {
+        String str = "你好hello！";
+        try {
+            System.out.println(new String(str.getBytes("UTF-8"), "UTF-8"));
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @Test
+    public void test8() {
+        LocalDateTime localDateTime = LocalDateTime.of(2019, 2, 25, 23, 59, 59);
+        System.out.println(localDateTime.getDayOfMonth());
+        System.out.println(localDateTime.getYear());
+        System.out.println(Calendar.getInstance().getTimeInMillis());
+        System.out.println(Calendar.getInstance().getActualMaximum(Calendar.DAY_OF_MONTH));
+    }
+
+    @Test
+    public void test9() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.DATE, -1);
+        System.out.println(calendar.getTime());
+
+    }
+
+    @Test
+    public void test10() {
+        String str = "a1s2d3f4h5j6k7";
+        // 将字符串中的数字全部替换为0
+        System.out.println(StringUtils.replaceAll(str, "\\d", "0"));
+
+    }
+
+    @Test
+    public void test11() {
+        System.out.println(StringUtils.isAnagram("hello", "lleohe"));
+
+        String str = "a" + "b" + "c" + "d";
+        System.out.println(str == "abcd");
+
     }
 }
